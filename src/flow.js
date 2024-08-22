@@ -75,14 +75,14 @@ export const getNextScreen = async (decryptedBody) => {
         // update the appointment fields based on current user selection
         console.log('Received data on TECHNICAL screen:', data.trigger);
 
-        if(data.trigger === 'btn_submitted' && data.TextInput_outlet && data.TextInput_picname && data.TextArea_machine && data.TextArea_desc && data.DatePicker_service_date){
+        if(data.trigger === 'btn_submitted' && data.outlet_name && data.picname && data.machine && data.desc_machine && data.service_date){
 
-          let outletName = data.TextInput_outlet;
-          let picName = data.TextInput_picname;
-          let machineBrand = data.TextArea_machine;
-          let machineIssue = data.TextArea_desc;
-          let serviceDate = data.DatePicker_service_date;
-          let formattedDate = convertTimestampToDate(data.DatePicker_service_date);
+          let outletName = data.outlet_name;
+          let picName = data.picname;
+          let machineBrand = data.machine;
+          let machineIssue = data.desc_machine;
+          let serviceDate = data.service_date;
+          let formattedDate = convertTimestampToDate(data.service_date);
 
           // Insert data into Realtime Database
           try {
@@ -94,6 +94,7 @@ export const getNextScreen = async (decryptedBody) => {
               machine_brand: machineBrand,
               machine_issue: machineIssue,
               date: serviceDate,
+              formatted_date: formattedDate,
             });
             console.log('Data Saved to Realtime Database!');
           } catch (error) {
