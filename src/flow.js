@@ -8,10 +8,9 @@
 
 // this object is generated from Flow Builder under "..." > Endpoint > Snippets > Responses
 const SCREEN_RESPONSES = {
-  APPOINTMENT: {
+  TECHNICAL: {
     screen: "TECHNICAL",
     data: {
-      orderType: []
     },
   },
   SUCCESS: {
@@ -60,9 +59,9 @@ export const getNextScreen = async (decryptedBody) => {
   // handle initial request when opening the flow and display APPOINTMENT screen
   if (action === "INIT") {
     return {
-      ...SCREEN_RESPONSES.APPOINTMENT,
+      ...SCREEN_RESPONSES.TECHNICAL,
       data: {
-        ...SCREEN_RESPONSES.APPOINTMENT.data,
+        ...SCREEN_RESPONSES.TECHNICAL.data,
         // these fields are disabled initially. Each field is enabled when previous fields are selected
       },
     };
@@ -72,9 +71,9 @@ export const getNextScreen = async (decryptedBody) => {
     // handle the request based on the current screen
     switch (screen) {
       // handles when user interacts with APPOINTMENT screen
-      case "APPOINTMENT":
+      case "TECHNICAL":
         // update the appointment fields based on current user selection
-        console.log('Received data on APPOINTMENT screen:', data.trigger);
+        console.log('Received data on TECHNICAL screen:', data.trigger);
 
         if(data.trigger === 'btn_submitted' && data.TextInput_outlet && data.TextInput_picname && data.TextArea_machine && data.TextArea_desc && data.DatePicker_service_date){
 
@@ -115,10 +114,10 @@ export const getNextScreen = async (decryptedBody) => {
           };
         }else{
           return {
-            ...SCREEN_RESPONSES.APPOINTMENT,
+            ...SCREEN_RESPONSES.TECHNICAL,
             data: {
               // copy initial screen data then override specific fields
-              ...SCREEN_RESPONSES.APPOINTMENT.data,
+              ...SCREEN_RESPONSES.TECHNICAL.data,
             },
           };
         }
